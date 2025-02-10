@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Project Todo List</title>
+        <title>LOLIST: List your task</title>
     </head>
     <body>
         <div class="dashboard">
@@ -37,9 +37,9 @@
             <form class="form-project">
                 <div class="form-project-container">
                     <label for="project-title">Project Name</label>
-                    <input type="text" class="project-title" id="projectTitle">
+                    <input type="text" class="project-title" id="projectTitle" minlength="1", maxlength="100">
                     <label for="project-desc">Project Description</label>
-                    <input type="text" class="project-desc" id="projectDesc">
+                    <input type="text" class="project-desc" id="projectDesc" minlength="1", maxlength="100">
                     <button type="submit" class="project-submit" autofocus>Submit</button>
                 </div>
             </form>

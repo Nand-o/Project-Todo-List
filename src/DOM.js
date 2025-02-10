@@ -2,6 +2,7 @@ import { Task, addTask } from "./object";
 import doneIcon from "/assets/done.svg";
 import deleteSvg from "/assets/delete.svg";
 import arrowList from "/assets/arrow-list.svg";
+import editIcon from "/assets/edit.svg";
 
 function makeTaskContent(type) {
     const container = document.querySelector(".content");
@@ -81,6 +82,28 @@ function makeTaskList(type) {
             }
         });
 
+        const edit = document.createElement("img");
+        edit.src = editIcon;
+        edit.addEventListener("click", () => {
+            const dialog = document.getElementById(`dialog${type.title}`);
+
+            const name = document.getElementById("taskName");
+            const desc = document.getElementById("taskDesc");
+            const due = document.getElementById("taskDue");
+
+            name.value = task.title;
+            desc.value = task.description;
+            due.value = task.due;
+
+            const objTitle = task.title;
+            let index = type.tasks.findIndex((task) => task.title === objTitle);
+
+            type.tasks.splice(index, 1);
+            makeTaskList(type);
+
+            dialog.showModal();
+        });
+
         const deleteIcon = document.createElement("img");
         deleteIcon.src = deleteSvg;
         deleteIcon.addEventListener("click", () => {
@@ -94,10 +117,11 @@ function makeTaskList(type) {
             divTask.style.cssText = "border: 10px solid var(--green-clr);";
             done.style.cssText = "filter: var(--icon-green-clr);";
             deleteIcon.style.cssText = "filter: var(--icon-green-clr);";
+            edit.style.cssText = "filter: var(--icon-green-clr);";
         }
 
-
         divIcon.appendChild(done);
+        divIcon.appendChild(edit);
         divIcon.appendChild(deleteIcon);
 
         divTask.appendChild(divIcon);
@@ -210,6 +234,13 @@ function makeProjectList(projects) {
         const divProject = document.createElement("div");
         divProject.classList.add(`project`);
         divProject.setAttribute("id", `project${i}`);
+
+        divProject.addEventListener("click", () => {
+            makeTaskContent(project);
+            makeTaskList(project);
+            makeDialogForm(project);
+            makeProjectList(projects);
+        });
 
         const arrow = document.createElement("img");
         arrow.src = arrowList;
