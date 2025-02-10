@@ -12,10 +12,7 @@ const quickTasks = {
 
 const myProjects = [];
 
-
-// Default Task
-
-// daily task
+// Default daily task
 
 const cleanBed = new Task("Cleaning Bed", "Clean bed sheet and pillow", "29-02-2025", "Finish");
 addTask(cleanBed, dailyTasks);
@@ -26,7 +23,7 @@ addTask(washFace, dailyTasks);
 const workout = new Task("Working Out", "Hit gym at 4pm", "20-00-2005", "Ongoing");
 addTask(workout, dailyTasks);
 
-// quick task
+// Default quick task
 
 const checkGarage = new Task("Checking Garage", "Check the garage", "20-00-2000");
 addTask(checkGarage, quickTasks);
@@ -34,6 +31,7 @@ addTask(checkGarage, quickTasks);
 const loginGame = new Task("Login Game", "Login genshin impact for daily login", "29-02-2025");
 addTask(loginGame, quickTasks);
 
+// Default Project
 const buildLego = new Project("Build Lego", "This project for me to track my lego build");
 addProject(buildLego, myProjects);
 

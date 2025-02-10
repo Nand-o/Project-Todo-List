@@ -225,6 +225,11 @@ function makeProjectList(projects) {
 
     const newProject = document.createElement("div");
     newProject.classList.add("addProject");
+    newProject.addEventListener("click", () => {
+        const dialog = document.getElementById("dialog-project");
+
+        dialog.showModal();
+    });
 
     const arrow = document.createElement("img");
     arrow.src = arrowList;
