@@ -145,6 +145,16 @@ body {
         /* background-color: blue; */
         border: 10px solid var(--black-clr);
         border-radius: 1em;
+
+        & .task-icon {
+            display: flex;
+            gap: 0.5em;
+            justify-content: flex-end;
+            & img {
+                width: 3em;
+                filter: var(--icon-black-clr);
+            }
+        }
     }
 
     & .addTask {

@@ -1,4 +1,6 @@
 import { Task, addTask } from "./object";
+import doneIcon from "/assets/done.svg";
+import deleteSvg from "/assets/delete.svg";
 
 function makeTaskContent(type) {
     const container = document.querySelector(".content");
@@ -38,7 +40,7 @@ function makeTaskList(type) {
 
     type.tasks.forEach(task => {
         const divTask = document.createElement("div");
-        divTask.classList.add("task");
+        divTask.classList.add(`task`);
 
         const titleTask = document.createElement("p");
         const descTask = document.createElement("p");
@@ -54,6 +56,31 @@ function makeTaskList(type) {
         divTask.appendChild(descTask);
         divTask.appendChild(dueTask);
         divTask.appendChild(statusTask);
+
+        const divIcon = document.createElement("div");
+        divIcon.classList.add("task-icon");
+
+        const done = document.createElement("img");
+        done.src = doneIcon;
+        done.addEventListener("click", () => {
+            
+        });
+
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = deleteSvg;
+        deleteIcon.addEventListener("click", () => {
+            const objTitle = task.title;
+            let index = type.tasks.findIndex((task) => task.title === objTitle);
+            type.tasks.splice(index, 1);
+            container.textContent = '';
+            makeTaskList(type);
+        });
+
+        
+        divIcon.appendChild(done);
+        divIcon.appendChild(deleteIcon);
+
+        divTask.appendChild(divIcon);
 
         container.appendChild(divTask);
     });
