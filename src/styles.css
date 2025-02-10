@@ -80,4 +80,48 @@ body {
 
 .content {
     background-color: var(--white-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.content-area {
+    background-color: var(--green-clr);
+    width: 75vw;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+
+    & .content-title {
+        flex-grow: 0.1;
+        background-color: red;
+    }
+
+    & .content-desc {
+        flex-grow: 0.2;
+        background-color: white;
+    }
+
+    & .content-task {
+        flex: 1;
+        background-color: red;
+    }
+}
+
+.content-task {
+    overflow: auto;
+    display: grid;
+    gap: 1em;
+    padding: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
+
+    & .task {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: blue;
+    }
 }
