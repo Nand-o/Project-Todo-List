@@ -1,24 +1,27 @@
 import "./styles.css";
-import { makeTaskContent, makeTaskList, makeDialogForm } from "./DOM";
-import { Task, addTask } from "./object";
-
-let dailyTasks = {
-    title: "Daily Tasks",
-    description: "blabalbalblalbalblalba",
-    tasks: [],
-};
-
-const cleanBed = new Task("Cleaning Bed", "Clean bed sheet and pillow", "29-02-2025", "Finish");
-addTask(cleanBed, dailyTasks);
-
-const washFace = new Task("Washing Face", "Wash face with soap", "20-00-2005", "Finish");
-addTask(washFace, dailyTasks);
-
-const workout = new Task("Working Out", "Hit gym at 4pm", "20-00-2005", "Ongoing");
-addTask(workout, dailyTasks);
+import { makeTaskContent, makeTaskList, makeDialogForm, makeProjectList } from "./DOM";
+import { dailyTasks, myProjects, quickTasks, Task, addTask, Project, addProject } from "./object";
 
 console.log(dailyTasks);
 
-makeTaskContent(dailyTasks);
-makeTaskList(dailyTasks);
-makeDialogForm(dailyTasks);
+
+
+const dailyBtn = document.querySelector("#daily");
+
+dailyBtn.addEventListener("click", () => {
+    makeTaskContent(dailyTasks);
+    makeTaskList(dailyTasks);
+    makeDialogForm(dailyTasks);
+    makeProjectList(myProjects);
+});
+
+const quickBtn = document.querySelector("#quick");
+
+quickBtn.addEventListener("click", () => {
+    makeTaskContent(quickTasks);
+    makeTaskList(quickTasks);
+    makeDialogForm(quickTasks);
+    makeProjectList(myProjects);
+});
+
+makeProjectList(myProjects);

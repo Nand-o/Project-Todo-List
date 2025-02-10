@@ -1,9 +1,11 @@
 import { Task, addTask } from "./object";
 import doneIcon from "/assets/done.svg";
 import deleteSvg from "/assets/delete.svg";
+import arrowList from "/assets/arrow-list.svg";
 
 function makeTaskContent(type) {
     const container = document.querySelector(".content");
+    container.textContent = '';
 
     const divContent = document.createElement("div");
     divContent.classList.add("content-area");
@@ -90,9 +92,11 @@ function makeTaskList(type) {
 
         if (task.status === "Finish") {
             divTask.style.cssText = "border: 10px solid var(--green-clr);";
+            done.style.cssText = "filter: var(--icon-green-clr);";
+            deleteIcon.style.cssText = "filter: var(--icon-green-clr);";
         }
 
-        
+
         divIcon.appendChild(done);
         divIcon.appendChild(deleteIcon);
 
@@ -124,6 +128,7 @@ function makeTaskList(type) {
 
 function makeDialogForm(type) {
     const container = document.querySelector(".content");
+    // container.textContent = '';
 
     const dialog = document.createElement("dialog");
     dialog.id = `dialog${type.title}`;
@@ -196,5 +201,42 @@ function makeDialogForm(type) {
     container.appendChild(dialog);
 }
 
+function makeProjectList(projects) {
+    const container = document.querySelector(".project-list");
+    container.textContent = '';
+    let i = 1;
 
-export { makeTaskContent, makeTaskList, makeDialogForm };
+    projects.forEach(project => {
+        const divProject = document.createElement("div");
+        divProject.classList.add(`project`);
+        divProject.setAttribute("id", `project${i}`);
+
+        const arrow = document.createElement("img");
+        arrow.src = arrowList;
+
+        const newText = document.createElement("p");
+        newText.textContent = project.title;
+
+        divProject.appendChild(arrow);
+        divProject.appendChild(newText);
+        container.appendChild(divProject);
+        i++;
+    });
+
+    const newProject = document.createElement("div");
+    newProject.classList.add("addProject");
+
+    const arrow = document.createElement("img");
+    arrow.src = arrowList;
+
+    const newText = document.createElement("p");
+    newText.textContent = "New Project +";
+
+    newProject.appendChild(arrow);
+    newProject.appendChild(newText);
+
+    container.appendChild(newProject);
+}
+
+
+export { makeTaskContent, makeTaskList, makeDialogForm, makeProjectList };

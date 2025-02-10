@@ -47,7 +47,7 @@ body {
     }
 
     & .dashboard-items {
-        flex-grow: 0.5;
+        flex-grow: 1;
         display: flex;
         flex-direction: column;
         /* gap: 1em; */
@@ -69,11 +69,36 @@ body {
                 font-size: 1.5rem;
                 font-weight: bold;
                 color: var(--green-clr);
+                margin-top: 10px;
             }
         }
 
-        :hover {
+        & .project-list {
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+            background-color: var(--green-clr);
+            padding-left: 0;
+            gap: 0;
+
+            & div {
+                flex-grow: 0.2;
+                width: 22.25vw;
+                padding-left: 6em;
+            }
+
+            & .addProject {
+                flex-grow: 0.2;
+                width: 22.25vw;                
+            }
+        }
+
+        div:hover {
             background-color: var(--white-clr);
+        }
+
+        .project-list:hover {
+            background-color: var(--green-clr);
         }
     }
 }
@@ -88,7 +113,7 @@ body {
 
 .content-area {
     /* background-color: var(--green-clr); */
-    border: 10px solid var(--green-clr);
+    /* border: 10px solid var(--green-clr); */
     width: 75vw;
     height: 95vh;
     display: flex;
@@ -116,7 +141,8 @@ body {
 
         & .desc-project {
             font-size: 1.5rem;
-            padding-left: 1.5em;
+            padding-left: 1.4em;
+            padding-right: 2em;
             font-weight: 600;
             color: var(--black-clr);
         }
