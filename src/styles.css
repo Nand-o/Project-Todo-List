@@ -87,7 +87,8 @@ body {
 }
 
 .content-area {
-    background-color: var(--green-clr);
+    /* background-color: var(--green-clr); */
+    border: 10px solid var(--green-clr);
     width: 75vw;
     height: 95vh;
     display: flex;
@@ -96,17 +97,34 @@ body {
 
     & .content-title {
         flex-grow: 0.1;
-        background-color: red;
+        /* background-color: red; */
+        display: flex;
+        align-items: center;
+        padding-left: 2em;
+
+
+        & .title-project {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--green-clr);
+        }
     }
 
     & .content-desc {
         flex-grow: 0.2;
-        background-color: white;
+        /* background-color: white; */
+
+        & .desc-project {
+            font-size: 1.5rem;
+            padding-left: 1.5em;
+            font-weight: 600;
+            color: var(--black-clr);
+        }
     }
 
     & .content-task {
         flex: 1;
-        background-color: red;
+        /* background-color: red; */
     }
 }
 
@@ -115,13 +133,36 @@ body {
     display: grid;
     gap: 1em;
     padding: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
 
     & .task {
         display: flex;
         justify-content: space-around;
+        flex-direction: column;
+        /* align-items: center; */
+        padding: 1.5em;
+        /* background-color: blue; */
+        border: 10px solid var(--black-clr);
+        border-radius: 1em;
+    }
+
+    & .addTask {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        background-color: blue;
+        border: 10px solid var(--black-clr);
+        border-radius: 1em;
+        
+        & p {
+            font-size: 10rem;
+            color: var(--black-clr);
+        }
+
+        & .add-text {
+            font-size: 2rem;
+            font-weight: bold;
+        }
     }
 }

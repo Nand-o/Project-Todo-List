@@ -1,22 +1,12 @@
 import "./styles.css";
-import { makeTaskContent, makeTaskList } from "./DOM";
+import { makeTaskContent, makeTaskList, makeDialogForm } from "./DOM";
+import { Task, addTask } from "./object";
 
 let dailyTasks = {
     title: "Daily Tasks",
     description: "blabalbalblalbalblalba",
     tasks: [],
 };
-
-function Task (title, description, due, status) {
-    this.title = title;
-    this.description = description;
-    this.due = due;
-    this.status = status;
-}
-
-function addTask (task, type) {
-    type.tasks.push(task)
-}
 
 const cleanBed = new Task("Cleaning Bed", "Clean bed sheet and pillow", "29-02-2025", "done");
 addTask(cleanBed, dailyTasks);
@@ -31,3 +21,4 @@ console.log(dailyTasks);
 
 makeTaskContent(dailyTasks);
 makeTaskList(dailyTasks);
+makeDialogForm(dailyTasks);
