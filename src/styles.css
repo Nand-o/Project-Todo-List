@@ -176,3 +176,10 @@ body {
         }
     }
 }
+
+.addTask:hover {
+    border: 10px solid var(--green-clr);
+    & p {
+        color: var(--green-clr);
+    }
+}

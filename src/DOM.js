@@ -37,10 +37,13 @@ function makeTaskContent(type) {
 
 function makeTaskList(type) {
     const container = document.querySelector(".content-task");
+    container.textContent = '';
+    let i = 1;
 
     type.tasks.forEach(task => {
         const divTask = document.createElement("div");
         divTask.classList.add(`task`);
+        divTask.setAttribute("id", `item${i}`);
 
         const titleTask = document.createElement("p");
         const descTask = document.createElement("p");
@@ -63,7 +66,17 @@ function makeTaskList(type) {
         const done = document.createElement("img");
         done.src = doneIcon;
         done.addEventListener("click", () => {
-            
+            const objTitle = task.title;
+            const objStatus = task.status;
+            let index = type.tasks.findIndex((task) => task.title === objTitle);
+
+            if (objStatus === "Finish") {
+                type.tasks[index].status = "Ongoing";
+                makeTaskList(type);
+            } else {
+                type.tasks[index].status = "Finish";
+                makeTaskList(type);
+            }
         });
 
         const deleteIcon = document.createElement("img");
@@ -72,9 +85,12 @@ function makeTaskList(type) {
             const objTitle = task.title;
             let index = type.tasks.findIndex((task) => task.title === objTitle);
             type.tasks.splice(index, 1);
-            container.textContent = '';
             makeTaskList(type);
         });
+
+        if (task.status === "Finish") {
+            divTask.style.cssText = "border: 10px solid var(--green-clr);";
+        }
 
         
         divIcon.appendChild(done);
@@ -83,6 +99,7 @@ function makeTaskList(type) {
         divTask.appendChild(divIcon);
 
         container.appendChild(divTask);
+        i++;
     });
 
     const addCard = document.createElement("div");
@@ -153,7 +170,7 @@ function makeDialogForm(type) {
         let descTask = desc.value;
         let dueTask = due.value;
 
-        const newTask = new Task(nameTask, descTask, dueTask, "done");
+        const newTask = new Task(nameTask, descTask, dueTask);
         addTask(newTask, type);
 
         name.value = "";

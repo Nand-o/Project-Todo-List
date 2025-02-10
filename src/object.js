@@ -1,4 +1,4 @@
-function Task (title, description, due, status = "done") {
+function Task (title, description, due, status = "Ongoing") {
     this.title = title;
     this.description = description;
     this.due = due;
