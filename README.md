@@ -1,2 +1,2 @@
-# Webpack-Setup
-Webpack bundler setup repository template.
+# Project-Todo-list
+This reposity when i am learning about web developer on The Odin Project website
