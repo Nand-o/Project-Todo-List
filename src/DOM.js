@@ -211,6 +211,24 @@ function makeDialogForm(type) {
         makeTaskList(type);
     });
 
+    const closeBtn = document.createElement("button");
+    closeBtn.textContent = "Close";
+    closeBtn.addEventListener("click", () => {
+        const dialog = document.getElementById(`dialog${type.title}`);
+
+        event.preventDefault();
+
+        const name = document.getElementById("taskName");
+        const desc = document.getElementById("taskDesc");
+        const due = document.getElementById("taskDue");
+
+        name.value = "";
+        desc.value = "";
+        due.value = "";
+
+        dialog.close();
+    });
+
     divForm.appendChild(labelName);
     divForm.appendChild(inputName);
     divForm.appendChild(labelDesc);
@@ -218,6 +236,7 @@ function makeDialogForm(type) {
     divForm.appendChild(labelDue);
     divForm.appendChild(inputDue);
     divForm.appendChild(submitBtn);
+    divForm.appendChild(closeBtn);
 
     form.appendChild(divForm)
     dialog.appendChild(form)

@@ -171,6 +171,7 @@ body {
         /* background-color: blue; */
         border: 10px solid var(--black-clr);
         border-radius: 1em;
+        overflow: hidden;
 
         & .task-icon {
             display: flex;
@@ -208,5 +209,52 @@ body {
     border: 10px solid var(--green-clr);
     & p {
         color: var(--green-clr);
+    }
+}
+
+dialog {
+    justify-self: center;
+    align-self: center;
+    border: 0;
+    border-radius: 1em;
+
+    & .form-container,
+    .form-project-container {
+        width: 30vw;
+        height: 60vh;
+        border: 10px solid var(--green-clr);
+        background-color: var(--white-clr);
+        border-radius: 1em;
+        display: flex;
+        flex-direction: column;
+        padding: 2em;
+
+        & label {
+            font-size: 2rem;
+            color: var(--black-clr);
+            font-weight: bold;
+            margin-top: 1em;
+        }
+
+        & input {
+            height: 50px;
+            border: 0;
+            border: 3px solid var(--green-clr);
+            border-radius: 10px;
+            padding: 1em;
+            color: var(--black-clr);
+            font-size: 1.5rem;
+        }
+
+        & button {
+            margin-top: 1em;
+            height: 50px;
+            border: 0;
+            background-color: var(--green-clr);
+            border-radius: 1em;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white-clr);
+        }
     }
 }

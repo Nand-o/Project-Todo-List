@@ -59,3 +59,18 @@ newProjectBtn.addEventListener("click", () => {
     dialog.close();
     makeProjectList(myProjects);
 });
+
+const closeProjectBtn = document.querySelector(".project-close");
+
+closeProjectBtn.addEventListener("click", () => {
+    const dialog = document.getElementById("dialog-project");
+    event.preventDefault();
+
+    const title = document.getElementById("projectTitle");
+    const desc = document.getElementById("projectDesc");
+
+    title.value = '';
+    desc.value = '';
+
+    dialog.close();
+});
