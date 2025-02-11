@@ -1,43 +1,33 @@
 import "./styles.css";
-import { makeTaskContent, makeTaskList, makeDialogForm, makeProjectList } from "./DOM";
-import { dailyTasks, myProjects, quickTasks, storeData, Project, addProject, getFromLocalStorage, updateData } from "./object";
-
-let data = getFromLocalStorage();
+import makeContent from "./DOM/DOM"
+import makeProjectList from "./DOM/makeProjectList";
+import { dailyTasks, myProjects, quickTasks, Project, addProject, storeData } from "./Object/dataControl";
+import { updateData, getFromLocalStorage } from "./Object/localStorage";
 
 document.addEventListener("DOMContentLoaded", () => {
-    data = getFromLocalStorage();
+    let data = getFromLocalStorage();
     if (localStorage.length !== 0) {
         storeData(data);
-    } 
-        makeProjectList(myProjects);
-
-        makeTaskContent(dailyTasks);
-        makeTaskList(dailyTasks);
-        makeDialogForm(dailyTasks);
+    }
+    makeContent(dailyTasks, myProjects);
 });
 
 const dailyBtn = document.querySelector("#daily");
 
 dailyBtn.addEventListener("click", () => {
     updateData();
-    data = getFromLocalStorage();
+    let data = getFromLocalStorage();
     storeData(data);
-    makeTaskContent(dailyTasks);
-    makeTaskList(dailyTasks);
-    makeDialogForm(dailyTasks);
-    makeProjectList(myProjects);
+    makeContent(dailyTasks, myProjects);
 });
 
 const quickBtn = document.querySelector("#quick");
 
 quickBtn.addEventListener("click", () => {
     updateData();
-    data = getFromLocalStorage();
+    let data = getFromLocalStorage();
     storeData(data);
-    makeTaskContent(quickTasks);
-    makeTaskList(quickTasks);
-    makeDialogForm(quickTasks);
-    makeProjectList(myProjects);
+    makeContent(quickTasks, myProjects);
 });
 
 const projectBtn = document.querySelector("#project");
@@ -53,6 +43,9 @@ projectBtn.addEventListener("click", () => {
         projectList.style.cssText = "opacity: 0;"
         projectCheck = true;
     }
+    updateData();
+    let data = getFromLocalStorage();
+    storeData(data)
 });
 
 const newProjectBtn = document.querySelector(".project-submit");
@@ -68,7 +61,7 @@ newProjectBtn.addEventListener("click", () => {
     addProject(newProject, myProjects);
     dialog.close();
     updateData();
-    data = getFromLocalStorage();
+    let data = getFromLocalStorage();
     storeData(data);
     makeProjectList(myProjects);
 });
@@ -84,6 +77,10 @@ closeProjectBtn.addEventListener("click", () => {
 
     title.value = '';
     desc.value = '';
+
+    updateData();
+    let data = getFromLocalStorage();
+    storeData(data);
 
     dialog.close();
 });
