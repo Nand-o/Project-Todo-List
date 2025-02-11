@@ -172,6 +172,16 @@ body {
         border: 10px solid var(--black-clr);
         border-radius: 1em;
         overflow: hidden;
+        
+        & p {
+            font-size: 1rem;
+            color: var(--black-clr);
+        }
+
+        & .title-task {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
 
         & .task-icon {
             display: flex;

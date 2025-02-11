@@ -1,20 +1,27 @@
 import "./styles.css";
 import { makeTaskContent, makeTaskList, makeDialogForm, makeProjectList } from "./DOM";
-import { dailyTasks, myProjects, quickTasks, Task, addTask, Project, addProject } from "./object";
+import { dailyTasks, myProjects, quickTasks, storeData, Project, addProject, getFromLocalStorage, updateData } from "./object";
 
-console.log(dailyTasks);
+let data = getFromLocalStorage();
 
 document.addEventListener("DOMContentLoaded", () => {
-    makeProjectList(myProjects);
+    data = getFromLocalStorage();
+    if (localStorage.length !== 0) {
+        storeData(data);
+    } 
+        makeProjectList(myProjects);
 
-    makeTaskContent(dailyTasks);
-    makeTaskList(dailyTasks);
-    makeDialogForm(dailyTasks);
+        makeTaskContent(dailyTasks);
+        makeTaskList(dailyTasks);
+        makeDialogForm(dailyTasks);
 });
 
 const dailyBtn = document.querySelector("#daily");
 
 dailyBtn.addEventListener("click", () => {
+    updateData();
+    data = getFromLocalStorage();
+    storeData(data);
     makeTaskContent(dailyTasks);
     makeTaskList(dailyTasks);
     makeDialogForm(dailyTasks);
@@ -24,6 +31,9 @@ dailyBtn.addEventListener("click", () => {
 const quickBtn = document.querySelector("#quick");
 
 quickBtn.addEventListener("click", () => {
+    updateData();
+    data = getFromLocalStorage();
+    storeData(data);
     makeTaskContent(quickTasks);
     makeTaskList(quickTasks);
     makeDialogForm(quickTasks);
@@ -57,6 +67,9 @@ newProjectBtn.addEventListener("click", () => {
     const newProject = new Project(title.value, desc.value);
     addProject(newProject, myProjects);
     dialog.close();
+    updateData();
+    data = getFromLocalStorage();
+    storeData(data);
     makeProjectList(myProjects);
 });
 

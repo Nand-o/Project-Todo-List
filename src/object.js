@@ -1,16 +1,16 @@
-const dailyTasks = {
+let dailyTasks = {
     title: "Daily Tasks",
     description: "Stay on top of your routine with our Daily Tasks section. This is where you can quickly add, manage, and track the tasks you need to complete each day. Whether it's work, personal errands, or small goals, keeping everything organized in one place helps you focus on what matters most. Prioritize, check off completed items, and feel accomplished as you make your way through your day. Ready to tackle the day ahead? Start with your list!",
     tasks: [],
 };
 
-const quickTasks = {
+let quickTasks = {
     title: "Quick Tasks",
     description: "For those moments when you just need to get things done fast, the Quick Tasks section is here to help. Add your small, time-sensitive tasks with a single click—perfect for quick reminders, errands, or things that can be knocked out in no time. Stay efficient and keep your day moving by checking off tasks as you breeze through them. Short, sweet, and simple—get it done in a flash!",
     tasks: [],
 }
 
-const myProjects = [];
+let myProjects = [];
 
 // Default daily task
 
@@ -57,4 +57,25 @@ function addProject(project, projects) {
     projects.push(project);
 }
 
-export { dailyTasks, myProjects, quickTasks, Task, addTask, Project, addProject };
+function saveToLocalStorage(array) {
+    localStorage.setItem("localTodo", JSON.stringify(array));
+}
+
+function getFromLocalStorage() {
+    if(localStorage.length === 0) {
+        saveToLocalStorage([dailyTasks, quickTasks, myProjects]);
+    }
+    return JSON.parse(localStorage.getItem("localTodo"));
+}
+
+function updateData () {
+    saveToLocalStorage([dailyTasks, quickTasks, myProjects]);
+}
+
+function storeData (array) {
+    dailyTasks = array[0];
+    quickTasks = array[1];
+    myProjects = array[2];
+}
+
+export { dailyTasks, myProjects, quickTasks, Task, addTask, Project, addProject, getFromLocalStorage, updateData, storeData};

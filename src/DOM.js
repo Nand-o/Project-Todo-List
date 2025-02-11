@@ -4,6 +4,9 @@ import deleteSvg from "/assets/delete.svg";
 import arrowList from "/assets/arrow-list.svg";
 import editIcon from "/assets/edit.svg";
 import { format } from 'date-fns';
+import { getFromLocalStorage, updateData, storeData } from "./object";
+
+let data = getFromLocalStorage();
 
 function makeTaskContent(type) {
     const container = document.querySelector(".content");
@@ -53,6 +56,8 @@ function makeTaskList(type) {
         const descTask = document.createElement("p");
         const dueTask = document.createElement("p");
         const statusTask = document.createElement("p");
+
+        titleTask.classList.add("title-task");
 
         titleTask.textContent = task.title;
         descTask.textContent = task.description;
@@ -111,6 +116,9 @@ function makeTaskList(type) {
             const objTitle = task.title;
             let index = type.tasks.findIndex((task) => task.title === objTitle);
             type.tasks.splice(index, 1);
+            updateData();
+            data = getFromLocalStorage();
+            storeData(data);
             makeTaskList(type);
         });
 
@@ -119,6 +127,7 @@ function makeTaskList(type) {
             done.style.cssText = "filter: var(--icon-green-clr);";
             deleteIcon.style.cssText = "filter: var(--icon-green-clr);";
             edit.style.cssText = "filter: var(--icon-green-clr);";
+            titleTask.style.color = "var(--green-clr)";
         }
 
         divIcon.appendChild(done);
@@ -212,7 +221,10 @@ function makeDialogForm(type) {
         due.value = "";
 
         dialog.close();
-        container.textContent = '';
+        updateData();
+        data = getFromLocalStorage();
+        storeData(data);
+        container.textContent = ''
         makeTaskList(type);
     });
 
@@ -260,6 +272,9 @@ function makeProjectList(projects) {
         divProject.setAttribute("id", `project${i}`);
 
         divProject.addEventListener("click", () => {
+            updateData();
+            data = getFromLocalStorage();
+            storeData(data);
             makeTaskContent(project);
             makeTaskList(project);
             makeDialogForm(project);
