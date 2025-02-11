@@ -3,6 +3,7 @@ import doneIcon from "/assets/done.svg";
 import deleteSvg from "/assets/delete.svg";
 import arrowList from "/assets/arrow-list.svg";
 import editIcon from "/assets/edit.svg";
+import { format } from 'date-fns';
 
 function makeTaskContent(type) {
     const container = document.querySelector(".content");
@@ -180,7 +181,9 @@ function makeDialogForm(type) {
     labelDue.textContent = "Due?";
 
     const inputDue = document.createElement("input");
-    inputDue.type = "text";
+    inputDue.type = "date";
+    const formattedDate = format(new Date(), 'yyyy-MM-dd');
+    inputDue.value = formattedDate;
     inputDue.setAttribute("id", "taskDue");
 
     const submitBtn = document.createElement("button");
@@ -197,7 +200,9 @@ function makeDialogForm(type) {
 
         let nameTask = name.value;
         let descTask = desc.value;
-        let dueTask = due.value;
+
+        let formatDate = format(due.value, 'dd-MM-yyyy');
+        let dueTask = formatDate;
 
         const newTask = new Task(nameTask, descTask, dueTask);
         addTask(newTask, type);
